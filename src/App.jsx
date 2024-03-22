@@ -1,11 +1,11 @@
-import './App.css'
-import Petshop from './components/Petshop'
+import { AppRoutes } from "./Routes";
 
 function App() {
 
   return (
-    <>
-    </>
+    <div>
+      <AppRoutes />
+    </div>
   )
 }
 
