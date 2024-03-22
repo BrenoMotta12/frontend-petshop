@@ -4,3 +4,9 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
+:root {
+    --black-800: #000000;
+    --black-900: #2F292A;
+    --white: #fff;
+}
