@@ -6,11 +6,12 @@ import NavBar from "./screens/Navbar/NavBar";
 export function AppRoutes() {
     return (
         <BrowserRouter>
-            <NavBar />
+            
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/*" element={<Home />} />
             </Routes>
+        
         </BrowserRouter>
     );
 }
