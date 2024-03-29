@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import './ProductRegister.css'
+import Modal from '../../components/Modal/Modal'
+import FormProductRegister from '../../components/Modal/FormProductRegister/FormProductRegister'
 
 function ProductRegister () {
 
-    
+    const [openModal, setOpenModal] = useState(false)
     const name = "Breno"
 
     // Variavel criada para testes - Aguardando API ficar pronta
@@ -10,22 +13,18 @@ function ProductRegister () {
         {
             "idItem": 1,
             "product": "Ração para gatos",
-            "quantity": 30,
             "value": 12.50,
             "unit": "Gramas"
-
         },
         {
             "idItem": 2,
             "product": "Shampoo",
-            "quantity": 40,
             "value": 12.50,
             "unit": "Vidro"
         },
         {
             "idItem": 3,
             "product": "Ração para cachorro",
-            "quantity": 50,
             "value": 12.50,
             "unit": "Pacote"
         }
@@ -33,32 +32,30 @@ function ProductRegister () {
     
 
     return (
-
-        
         <div className="body">
-
+            
             <div className='buttons'>
                 <h1>Olá, {name}</h1>
                 <div>
-                    <button className='button-new' onClick={() => console.log('Clicou')}>
+                    <button className='button-new' onClick={() => setOpenModal(true)}>
                         ADICIONAR
                     </button>
+                    <Modal isOpen={openModal} setOpenModal={() => setOpenModal(!openModal)} children={<FormProductRegister/>}/>
                 </div>
                 <div>
-                    <button className='button-report' onClick={() => console.log('Clicou')}>
+                    <button className='button-report' onClick={() => {}}>
                         <p>GERAR</p>
                         <p>RELATÓRIO</p>
                     </button>
                 </div>
             </div>
-            <h1 className='text-realeases'>Lançamentos</h1>
+            <h1 className='text-realeases'>Cadastro de Produtos</h1>
 
             <table className='table-products'>
                 <thead>
                     <tr>
                         <th>CÓDIGO</th>
                         <th>PRODUTO</th>
-                        <th>QUANTIDADE</th>
                         <th>PREÇO UNITÁRIO</th>
                         <th>UNIDADE DE MEDIDA</th>
                     </tr>
@@ -68,7 +65,6 @@ function ProductRegister () {
                         <tr key={index}>
                             <td className='column-id'>{item.idItem}</td>
                             <td className='column-product'>{item.product}</td>
-                            <td className='column-quantity'>{item.quantity}</td>
                             <td className='column-value'>R${item.value}</td>
                             <td className='column-unit'>{item.unit}</td>
                         </tr>
