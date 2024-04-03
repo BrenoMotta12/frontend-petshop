@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import './ProductRegister.css'
+import './Pets.css'
 import Modal from '../../components/Modal/Modal'
 
-function ProductRegister () {
+function Pets () {
 
     const [openModal, setOpenModal] = useState(false)
     const name = "Breno"
@@ -10,19 +10,20 @@ function ProductRegister () {
     // Variavel criada para testes - Aguardando API ficar pronta
     const dados = [
         {
-            "idItem": 1,
-            "product": "Ração para gatos - pacote",
-            "value": 12.50
+            "id": 1,
+            "tutor": "japones safado",
+            "name": "pinduca",
+            "specie": "ave",
+            "breed": "paragaio",
+            "service": "tiro ao alvo"
         },
         {
-            "idItem": 2,
-            "product": "Shampoo",
-            "value": 12.50
-        },
-        {
-            "idItem": 3,
-            "product": "Ração para cachorro",
-            "value": 12.50
+            "id": 2,
+            "tutor": "alex",
+            "name": "ronaldo",
+            "specie": "cachorro",
+            "breed": "pastor alemão",
+            "service": "procurador de droga"
         }
     ]
     
@@ -45,23 +46,27 @@ function ProductRegister () {
                     </button>
                 </div>
             </div>
-            <h1 className='text-realeases'>Cadastro de Produtos</h1>
+            <h1 className='text-realeases'>Animais</h1>
 
             <table className='table-products'>
                 <thead>
                     <tr>
-                        <th>CÓDIGO</th>
-                        <th>PRODUTO</th>
-                        <th>PREÇO UNITÁRIO</th>
+                        <th>TUTOR</th>
+                        <th>NOME PET</th>
+                        <th>ESPÉCIE</th>
+                        <th>RAÇA</th>
+                        <th>SERVIÇOS</th>
                     </tr>
                 </thead>
                 <tbody>
                     {dados.map((item, index) => (
                         <tr key={index}>
-                            <td className='column-id'>{item.idItem}</td>
-                            <td className='column-product'>{item.product}</td>
-                            <td className='column-value'>R${item.value}</td>
-                        
+                            <td className='column-tutor'>{item.tutor}</td>
+                            <td className='column-name'>{item.name}</td>
+                            <td className='column-specie'>{item.specie}</td>
+                            <td className='column-breed'>{item.breed}</td>
+                            <td className='column-service'>{item.service}</td>
+
                         </tr>
                     ))}
                 </tbody>
@@ -71,4 +76,4 @@ function ProductRegister () {
     )
 }
 
-export default ProductRegister
+export default Pets

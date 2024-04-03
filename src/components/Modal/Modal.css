@@ -15,10 +15,11 @@
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
-    height: 85%;
+    width: 40%;
+    height: 60%;
     background-color: white;
     justify-content: center;
+    padding: 20px;
 }
 
 .button-style {
@@ -117,5 +118,41 @@ button:active {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
     height: 100%;
+    align-items: center;
 }
+.form-pets div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form-pets input {
+    height: 30px;
+    width: 500px;
+    margin-bottom: 10px;
+}
+
+
+
+/* 
+
+
+
+
+
+
+*/
+  
+
+  
+.input-error {
+    outline: 1px solid rgb(255, 72, 72);
+}
+  
+.error-message {
+    color: rgb(255, 72, 72);
+    font-size: 0.75rem;
+    margin-top: 8px;
+}
+  

@@ -1,0 +1,50 @@
+.body {
+    margin-left: 200px;
+    margin-right: 100px;
+    
+}
+
+.buttons{
+    flex-direction: column;
+    display: flex;
+    align-items: end;
+}
+.text-realeases {
+    position: absolute;
+    left: 200px;
+}
+
+.button-new {
+    background-color: black;
+    color: white;
+    margin-top: 10%;
+    width: 150px;
+    height: 50px;
+}
+.button-report {
+    background-color: black;
+    color: white;
+    margin-top: 10%;
+    width: 150px;
+    height: 50px;
+}
+
+
+.table-products {
+    border-collapse: collapse;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.table-products th, .table-products td {
+    border: 2px solid black;
+    padding: 15px;
+    text-align: left;
+}
+
+.table-products th {
+    background-color: #f2f2f2;
+}
+
