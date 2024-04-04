@@ -4,6 +4,7 @@ import listIcon from '../../img/list.svg'
 import bookIcon from '../../img/img_book.svg'
 import realeasesIcon from '../../img/img_realeases.svg'
 import homeIcon from '../../img/img_home.svg'
+import petsIcon from '../../img/img_pet.svg'
 import { NavLink } from 'react-router-dom'
 
  const NavBar = ({children}) => {
@@ -23,6 +24,12 @@ import { NavLink } from 'react-router-dom'
             name:"Realeases",
             icon: realeasesIcon
         },
+        {
+            path:"/pets",
+            name:"Pets",
+            icon: petsIcon
+        },
+        
     ]
    return (  
      <div className='container'>
