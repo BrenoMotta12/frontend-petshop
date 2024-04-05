@@ -1,24 +1,20 @@
 import React from 'react'
 import './Modal.css'
 import { useForm } from 'react-hook-form'
+import axios from 'axios';
+import Api from '../../services/Api';
 
 export default function Modal({isOpen, setOpenModal}) {
 
-  // const [dataForm, setDataForm] = useState({
-  //   tutor: '',
-  //   name: '',
-  //   specie: '',
-  //   breed: '',
-  //   service: '',
-  // })
-
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
  
 
   const onSubmit = (data) => {
-    /* CHAMAR A API */
-    console.log(data) 
+    var jsonData = JSON.stringify(data)
+    Api
+    .post("/save/", jsonData)
+    .then(() => {setOpenModal(false), reset()})
+    .catch((err) => {console.error("Ocorreu um erro na API " + err)})
   }  
 
   if (isOpen) {
@@ -81,7 +77,7 @@ export default function Modal({isOpen, setOpenModal}) {
                 <span class="gradient"></span>
                 <span class="label">Salvar</span>
               </button>
-              <button className='button-style' onClick={setOpenModal}>
+              <button className='button-style' onClick={() => {setOpenModal(false), reset()}}>
                 <span class="transition-cancel"></span>
                 <span class="gradient"></span>
                 <span class="label">Cancelar</span>
