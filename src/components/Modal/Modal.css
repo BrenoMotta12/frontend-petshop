@@ -128,8 +128,8 @@ button:active {
     width: 100%;
 }
 .form-pets input {
-    height: 30px;
-    width: 500px;
+    height: 5vh;
+    width: 70vh;
     margin-bottom: 10px;
 }
 
