@@ -3,10 +3,12 @@ import { authReducer, logoutReducer } from '../../redux/features/login/auth';
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './Login.module.css';
 import img_login from '../../assets/img_login.png';
+import { useNavigate } from 'react-router';
 
 export function Login() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [auth, setAuth] = useState({
         usuario: "",
@@ -22,8 +24,23 @@ export function Login() {
 
     function submit(e) {
         e.preventDefault();
-        dispatch(authReducer(auth));
-        console.log(auth);
+
+        const objAuth = {
+            authenticated: false,
+            id: 1,
+            usuario: auth.usuario,
+        }
+
+        if (auth.senha === '123') {
+            objAuth.authenticated = true;
+            navigate('/');
+        } else {
+            objAuth.authenticated = false;
+            alert('Usuário ou Senha incorreta');
+        }
+
+        dispatch(authReducer(objAuth));
+        console.log(objAuth);
     }
     return (
         <div className={styles.login}>
