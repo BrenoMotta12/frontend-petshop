@@ -47,6 +47,10 @@
 .table-products th {
     background-color: #f2f2f2;
 }
+.column-trash{
+  width: 0;
+}
+
 
 .typing-indicator {
     width: 60px;

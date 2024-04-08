@@ -11,6 +11,12 @@ function Pets () {
     const [loading, setLoading] = useState(true)
     const name = "Breno"
     
+    useEffect(() =>{
+        if(openModal == false) {
+            setLoading(true)
+        }
+    }, [openModal])
+
     useEffect(() => {
         Api
         .get("/list/")
@@ -18,12 +24,12 @@ function Pets () {
             setData(response.data), 
             setLoading(false)})
         .catch((err) => {console.error("Ocorreu um erro na API " + err)})
-    }, [openModal])
+    }, [loading])
 
     function deleteAnimal(index) {
         Api
         .delete("/delete?animal_id=" + index)
-        .then(() => {})
+        .then(() => {setLoading(true)})
         .catch((err) => {console.error("Ocorreu um erro na API " + err)})
         console.log("/delete?animal_id=" + index)
     }
@@ -75,7 +81,12 @@ function Pets () {
                                 <td className='column-breed'>{item.breed}</td>
                                 <td className='column-service'>{item.service}</td>
                                 <td className='column-trash'>
-                                    <img src={trashIcon} alt="" onClick={() => deleteAnimal(item.id.toString())} />
+                                    <img 
+                                    className='img-trash' 
+                                    src={trashIcon} 
+                                    alt="" 
+                                    onClick={() => deleteAnimal(item.id.toString())} 
+                                    />
                                 </td>
                             </tr>
                         ))}

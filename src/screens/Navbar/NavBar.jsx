@@ -9,11 +9,7 @@ import { NavLink } from 'react-router-dom'
 
  const NavBar = ({children}) => {
     const menuItem=[
-        {
-            path:"/home",
-            name:"Home",
-            icon: homeIcon
-        },
+        
         {
             path:"/productregister",
             name:"ProductRegister",

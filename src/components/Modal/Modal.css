@@ -130,6 +130,7 @@ button:active {
 .form-pets input {
     height: 5vh;
     width: 70vh;
+    padding-left: 1%;
     margin-bottom: 10px;
 }
 

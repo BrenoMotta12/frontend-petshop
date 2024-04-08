@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios';
 import Api from '../../services/Api';
 
-export default function Modal({isOpen, setOpenModal}) {
+export default function Modal({isOpen, setOpenModal, setLoading}) {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
  
@@ -13,7 +13,7 @@ export default function Modal({isOpen, setOpenModal}) {
     var jsonData = JSON.stringify(data)
     Api
     .post("/save/", jsonData)
-    .then(() => {setOpenModal(false), reset()})
+    .then(() => {setOpenModal(false), reset(), setLoading(true)})
     .catch((err) => {console.error("Ocorreu um erro na API " + err)})
   }  
 
