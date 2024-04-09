@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { Children, useState } from 'react'
 import './ProductRegister.css'
 import Modal from '../../components/Modal/Modal'
+import FormProducts from '../../components/FormProducts/FormProductsRegister'
 
 function ProductRegister () {
 
@@ -12,16 +13,19 @@ function ProductRegister () {
         {
             "idItem": 1,
             "product": "Ração para gatos - pacote",
+            "quantity": 12,
             "value": 12.50
         },
         {
             "idItem": 2,
             "product": "Shampoo",
+            "quantity": 12,
             "value": 12.50
         },
         {
             "idItem": 3,
             "product": "Ração para cachorro",
+            "quantity": 12,
             "value": 12.50
         }
     ]
@@ -36,7 +40,7 @@ function ProductRegister () {
                     <button className='button-new' onClick={() => setOpenModal(true)}>
                         ADICIONAR
                     </button>
-                    <Modal isOpen={openModal} setOpenModal={() => setOpenModal(!openModal)}/>
+                    <Modal isOpen={openModal}  children={<FormProducts setOpenModal={setOpenModal}/>}/>
                 </div>
                 <div>
                     <button className='button-report' onClick={() => {}}>
@@ -52,6 +56,7 @@ function ProductRegister () {
                     <tr>
                         <th>CÓDIGO</th>
                         <th>PRODUTO</th>
+                        <th>QUANTIDADE</th>
                         <th>PREÇO UNITÁRIO</th>
                     </tr>
                 </thead>
@@ -60,6 +65,7 @@ function ProductRegister () {
                         <tr key={index}>
                             <td className='column-id'>{item.idItem}</td>
                             <td className='column-product'>{item.product}</td>
+                            <td className='column-quantity'>{item.quantity}</td>
                             <td className='column-value'>R${item.value}</td>
                         
                         </tr>

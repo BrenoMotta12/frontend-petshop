@@ -3,6 +3,8 @@ import './Pets.css'
 import Modal from '../../components/Modal/Modal'
 import Api from '../../services/Api'
 import trashIcon from '../../img/img_trash.svg'
+import FormPets from '../../components/FormPets/FormPets'
+import { Form } from 'react-hook-form'
 
 function Pets () {
 
@@ -42,7 +44,7 @@ function Pets () {
                     <button className='button-new' onClick={() => setOpenModal(true)}>
                         ADICIONAR
                     </button>
-                    <Modal isOpen={openModal} setOpenModal={() => setOpenModal(!openModal)}/>
+                    <Modal isOpen={openModal} children={<FormPets setOpenModal={setOpenModal}/>}/>
                 </div>
                 <div>
                     <button className='button-report' onClick={() => {}}>
