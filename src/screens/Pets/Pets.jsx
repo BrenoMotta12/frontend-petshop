@@ -3,18 +3,22 @@ import './Pets.css'
 import Modal from '../../components/Modal/Modal'
 import Api from '../../services/Api'
 import trashIcon from '../../img/img_trash.svg'
+import pencilIcon from '../../img/img_pencil.svg'
 import FormPets from '../../components/FormPets/FormPets'
 import { Form } from 'react-hook-form'
+import { json } from 'react-router-dom'
 
 function Pets () {
 
     const [openModal, setOpenModal] = useState(false)
     const [data, setData] = useState([''])
+    const [dataForm, setDataForm] = useState([''])
     const [loading, setLoading] = useState(true)
     const name = "Breno"
     
     useEffect(() =>{
         if(openModal == false) {
+            setDataForm('')
             setLoading(true)
         }
     }, [openModal])
@@ -29,11 +33,16 @@ function Pets () {
     }, [loading])
 
     function deleteAnimal(index) {
+        const jsonData = {
+            animal_id: index
+        }
         Api
-        .delete("/delete?animal_id=" + index)
+        .delete("/delete/", {
+            data: jsonData
+        })
         .then(() => {setLoading(true)})
         .catch((err) => {console.error("Ocorreu um erro na API " + err)})
-        console.log("/delete?animal_id=" + index)
+
     }
 
     return (
@@ -44,7 +53,7 @@ function Pets () {
                     <button className='button-new' onClick={() => setOpenModal(true)}>
                         ADICIONAR
                     </button>
-                    <Modal isOpen={openModal} children={<FormPets setOpenModal={setOpenModal}/>}/>
+                    <Modal isOpen={openModal} children={<FormPets setOpenModal={setOpenModal} dataForm={dataForm}/>}/>
                 </div>
                 <div>
                     <button className='button-report' onClick={() => {}}>
@@ -84,10 +93,16 @@ function Pets () {
                                 <td className='column-service'>{item.service}</td>
                                 <td className='column-trash'>
                                     <img 
+                                    className='img-pencil' 
+                                    src={pencilIcon} 
+                                    alt="" 
+                                    onClick={() => {setOpenModal(true), setDataForm(item)}} 
+                                    />
+                                    <img 
                                     className='img-trash' 
                                     src={trashIcon} 
                                     alt="" 
-                                    onClick={() => deleteAnimal(item.id.toString())} 
+                                    onClick={() => deleteAnimal(item.id)} 
                                     />
                                 </td>
                             </tr>

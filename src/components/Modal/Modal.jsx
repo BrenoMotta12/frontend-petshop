@@ -1,7 +1,5 @@
 import React from 'react'
 import './Modal.css'
-import { useForm } from 'react-hook-form'
-import Api from '../../services/Api';
 
 export default function Modal({isOpen, children}) {
 
