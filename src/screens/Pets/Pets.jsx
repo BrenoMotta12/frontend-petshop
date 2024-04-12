@@ -5,14 +5,16 @@ import Api from '../../services/Api'
 import trashIcon from '../../img/img_trash.svg'
 import FormPets from '../../components/FormPets/FormPets'
 import { Form } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 
 function Pets () {
 
+    const auth = useSelector(state => state.auth)
     const [openModal, setOpenModal] = useState(false)
     const [data, setData] = useState([''])
     const [loading, setLoading] = useState(true)
-    const name = "Breno"
-    
+    const name = auth.value.usuario;
+
     useEffect(() =>{
         if(openModal == false) {
             setLoading(true)
