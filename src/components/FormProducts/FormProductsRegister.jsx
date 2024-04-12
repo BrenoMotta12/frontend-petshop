@@ -18,7 +18,7 @@ export default function FormProducts({ setOpenModal }) {
               <label htmlFor='name'>NOME DO PRODUTO</label>
               <input 
                   className={errors?.name && "input-error"}
-                  type="text" 
+                  type="text"
                   {...register('name', { required: true })}
               />
           </div>
