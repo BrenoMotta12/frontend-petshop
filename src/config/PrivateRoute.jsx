@@ -1,14 +1,13 @@
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router";
 
-export function Private({children}) {
+export function Private({ children }) {
 
-    const auth = useSelector((state) => state.auth.value);
-    const isAuthenticated = auth.authenticated;
+    const auth = JSON.parse(sessionStorage.getItem('auth'));
+    const isAuthenticated = auth && auth.status;
 
-    if (!isAuthenticated) {
-        return <Navigate to='/login' />
+    if (isAuthenticated === "success") {
+        return children;
     }
 
-    return children;
+    return <Navigate to='/login' />
 }

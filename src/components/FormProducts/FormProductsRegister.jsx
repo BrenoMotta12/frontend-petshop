@@ -45,14 +45,14 @@ export default function FormProducts({ setOpenModal }) {
 
       <div className='buttons-container'>
           <button className='button-style'onClick={() => handleSubmit(onSubmit)()} >
-              <span class="transition-save"></span>
-              <span class="gradient"></span>
-              <span class="label">Salvar</span>
+              <span className="transition-save"></span>
+              <span className="gradient"></span>
+              <span className="label">Salvar</span>
           </button>
           <button className='button-style' onClick={() => {setOpenModal(false), reset()}}>
-              <span class="transition-cancel"></span>
-              <span class="gradient"></span>
-              <span class="label">Cancelar</span>
+              <span className="transition-cancel"></span>
+              <span className="gradient"></span>
+              <span className="label">Cancelar</span>
           </button>
       </div>
     </>

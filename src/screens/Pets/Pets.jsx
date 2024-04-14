@@ -15,7 +15,7 @@ function Pets () {
     const [data, setData] = useState([''])
     const [dataForm, setDataForm] = useState([''])
     const [loading, setLoading] = useState(true)
-    const name = auth.value.usuario;
+    const name = JSON.parse(sessionStorage.getItem('auth')).name
 
     useEffect(() =>{
         if(openModal == false) {
@@ -26,7 +26,7 @@ function Pets () {
 
     useEffect(() => {
         Api
-        .get("/list/")
+        .get("animal/list/")
         .then((response) => {
             setData(response.data), 
             setLoading(false)})
@@ -38,7 +38,7 @@ function Pets () {
             animal_id: index
         }
         Api
-        .delete("/delete/", {
+        .delete("animal/delete/", {
             data: jsonData
         })
         .then(() => {setLoading(true)})
@@ -65,13 +65,13 @@ function Pets () {
             </div>
             <h1 className='text-realeases'>Animais</h1>
             {loading ? (
-                <div class="typing-indicator">
-                    <div class="typing-circle"></div>
-                    <div class="typing-circle"></div>
-                    <div class="typing-circle"></div>
-                    <div class="typing-shadow"></div>
-                    <div class="typing-shadow"></div>
-                    <div class="typing-shadow"></div>
+                <div className="typing-indicator">
+                    <div className="typing-circle"></div>
+                    <div className="typing-circle"></div>
+                    <div className="typing-circle"></div>
+                    <div className="typing-shadow"></div>
+                    <div className="typing-shadow"></div>
+                    <div className="typing-shadow"></div>
                 </div>
             ) : (
                 <table className='table-products'>

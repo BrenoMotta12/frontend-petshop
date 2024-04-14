@@ -1,13 +1,17 @@
-
+import {NavLink, Navigate } from 'react-router-dom'
 import './NavBar.css'
 import listIcon from '../../img/list.svg' 
 import bookIcon from '../../img/img_book.svg'
 import realeasesIcon from '../../img/img_realeases.svg'
-import homeIcon from '../../img/img_home.svg'
 import petsIcon from '../../img/img_pet.svg'
-import { NavLink } from 'react-router-dom'
+import imgLogout from '../../img/sign-out.svg';
 
  const NavBar = ({children}) => {
+
+    const logout = () => {
+        sessionStorage.removeItem('auth');
+        window.location = '/login';
+    }
     const menuItem=[
         
         {
@@ -24,8 +28,7 @@ import { NavLink } from 'react-router-dom'
             path:"/pets",
             name:"Pets",
             icon: petsIcon
-        },
-        
+        }, 
     ]
    return (  
      <div className='container'>
@@ -42,6 +45,9 @@ import { NavLink } from 'react-router-dom'
                     ))
                 }
             </div>   
+            <NavLink className="link" onClick={() => logout()}>
+                <img src={imgLogout} title='Sair' />
+            </NavLink>
         </div>
         <main>{children}</main>
      </div>

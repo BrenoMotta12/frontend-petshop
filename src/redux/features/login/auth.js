@@ -9,9 +9,6 @@ export const auth = createSlice({
         authReducer: (state, action) => {
             state.value = action.payload
         },
-        logoutReducer: (state, action) => {
-            state.value = action.payload
-        }
     }
 });
 

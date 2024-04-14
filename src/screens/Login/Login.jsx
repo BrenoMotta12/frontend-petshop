@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { authReducer, logoutReducer } from '../../redux/features/login/auth';
-import { useSelector, useDispatch } from 'react-redux'
 import styles from './Login.module.css';
 import img_login from '../../assets/img_login.png';
 import { useNavigate } from 'react-router';
+import { logar } from '../../services/logar';
+import { useDispatch } from 'react-redux';
+import { authReducer } from '../../redux/features/login/auth';
 
 export function Login() {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [auth, setAuth] = useState({
-        usuario: "",
-        senha: ""
+        username_or_email: "",
+        password: ""
     });
 
     function handleChange(e) {
@@ -22,25 +23,27 @@ export function Login() {
         });
     }
 
-    function submit(e) {
+    async function submit(e) {
         e.preventDefault();
 
-        const objAuth = {
-            authenticated: false,
-            id: 1,
-            usuario: auth.usuario,
+        try {
+            const authenticated = await logar(auth);
+
+            console.log(authenticated);
+
+            if (authenticated.data.status == "success") {
+                dispatch(authReducer(authenticated.data));
+                sessionStorage.setItem('auth', JSON.stringify(authenticated.data));
+                navigate('/home');
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                return alert(error.response.data.message);
+            } else {
+                return alert("Erro ao logar, entre em contato com o administrador.");
+            }
         }
 
-        if (auth.senha === '123') {
-            objAuth.authenticated = true;
-            navigate('/');
-        } else {
-            objAuth.authenticated = false;
-            alert('Usuário ou Senha incorreta');
-        }
-
-        dispatch(authReducer(objAuth));
-        console.log(objAuth);
     }
     return (
         <div className={styles.login}>
@@ -53,22 +56,22 @@ export function Login() {
                 <div className={styles["input-container"]}>
                     <label htmlFor="usuario">Usuário</label>
                     <input 
-                        id="usuario" 
-                        name='usuario'
+                        id="username_or_email" 
+                        name='username_or_email'
                         type="text"
                         placeholder='Usuário'
-                        value={auth.usuario}
+                        value={auth.username_or_email}
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div className={styles["input-container"]}>
                     <label htmlFor="senha">Senha</label>
                     <input 
-                        id='senha'
-                        name='senha'
+                        id='password'
+                        name='password'
                         type="password" 
                         placeholder='Senha'
-                        value={auth.senha}
+                        value={auth.password}
                         onChange={(e) => handleChange(e)}
                     />
                 </div>

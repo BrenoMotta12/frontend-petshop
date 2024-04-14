@@ -15,11 +15,11 @@ export default function FormPets({ setOpenModal, dataForm }) {
     
     if(dataForm["id"]) {
         jsonData.id = dataForm["id"]
-        Api.put("/update/", JSON.stringify(jsonData))
+        Api.put("animal/update/", JSON.stringify(jsonData))
         .then(() => { setOpenModal(false); }) // Chame o reset após a operação de sucesso
         .catch((err) => { console.error("Ocorreu um erro na API " + err); });
     } else {
-        Api.post("/save/", JSON.stringify(jsonData))
+        Api.post("animal/save/", JSON.stringify(jsonData))
         .then(() => { setOpenModal(false); }) // Chame o reset após a operação de sucesso
         .catch((err) => { console.error("Ocorreu um erro na API " + err); });
     }
@@ -77,14 +77,14 @@ export default function FormPets({ setOpenModal, dataForm }) {
 
       <div className='buttons-container'>
         <button className='button-style' onClick={handleSubmit(onSubmit)} >
-          <span class="transition-save"></span>
-          <span class="gradient"></span>
-          <span class="label">Salvar</span>
+          <span className="transition-save"></span>
+          <span className="gradient"></span>
+          <span className="label">Salvar</span>
         </button>
         <button className='button-style' onClick={() => { setOpenModal(false); }}>
-          <span class="transition-cancel"></span>
-          <span class="gradient"></span>
-          <span class="label">Cancelar</span>
+          <span className="transition-cancel"></span>
+          <span className="gradient"></span>
+          <span className="label">Cancelar</span>
         </button>
       </div>
     </>
