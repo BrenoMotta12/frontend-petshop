@@ -5,7 +5,6 @@ import Api from '../../services/Api'
 import trashIcon from '../../img/img_trash.svg'
 import pencilIcon from '../../img/img_pencil.svg'
 import FormPets from '../../components/FormPets/FormPets'
-import { Form } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
 function Pets () {
@@ -15,7 +14,7 @@ function Pets () {
     const [data, setData] = useState([''])
     const [dataForm, setDataForm] = useState([''])
     const [loading, setLoading] = useState(true)
-    const name = JSON.parse(sessionStorage.getItem('auth')).name
+    const name = JSON.parse(sessionStorage.getItem('auth')).user_name
 
     useEffect(() =>{
         if(openModal == false) {
