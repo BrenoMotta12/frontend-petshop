@@ -64,8 +64,8 @@ export default function FormProducts({ setOpenModal, dataForm, sell }) {
               <label htmlFor='quantity_sold'>QUANTIDADE VENDIDA</label>
               <input
                 className={errors?.quantity_sold && "input-error"}
-                type="text"
-                {...register('quantity_sold', { required: true })}
+                type="number"
+                {...register('quantity_sold', { required: true, pattern: /^[0-9]+$/ })}
               />
             </div>
           </form>
