@@ -24,8 +24,8 @@
   
 .error-message {
     color: rgb(255, 72, 72);
-    font-size: 0.75rem;
-    margin-top: 8px;
+    align-items: center;
+    align-self: center;
 }
 .button-style {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,

@@ -11,6 +11,7 @@ export default function FormProducts({ setOpenModal, dataForm, sell }) {
   });
 
   const onSubmit = (data) => {
+    
     console.log(data)
     if (sell) {
       let jsonData = {}
@@ -47,7 +48,6 @@ export default function FormProducts({ setOpenModal, dataForm, sell }) {
       {sell ? (
         <>
           <form className='form-products' onSubmit={handleSubmit(onSubmit)}>
-
             <div>
                 <label className='label-new-sell'>NOVA VENDA</label>
                 <label htmlFor='id'>ID</label>
@@ -55,7 +55,6 @@ export default function FormProducts({ setOpenModal, dataForm, sell }) {
                 name='id'
                   className={errors?.id && "input-error"}
                   type="number"
-                  
                   {...register('id', { required: true, pattern: /^[0-9]+$/, disabled: true })}
                 />
             </div>
@@ -65,8 +64,9 @@ export default function FormProducts({ setOpenModal, dataForm, sell }) {
               <input
                 className={errors?.quantity_sold && "input-error"}
                 type="number"
-                {...register('quantity_sold', { required: true, pattern: /^[0-9]+$/ })}
+                {...register('quantity_sold', { required: true, pattern: /^[0-9]+$/, validate: (value, formValues) => value <= dataForm.quantity})}
               />
+              {errors?.quantity_sold && <p className="error-message">Quantidade insuficiente disponível para venda! Quantidade em estoque: {dataForm.quantity}</p>}
             </div>
           </form>
         </>
