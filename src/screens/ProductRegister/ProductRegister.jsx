@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import Api from '../../services/Api'
 import trashIcon from '../../img/img_trash.svg'
 import pencilIcon from '../../img/img_pencil.svg'
+import sellIcon from '../../img/img_sell.svg'
 
 function ProductRegister () {
 
@@ -13,6 +14,7 @@ function ProductRegister () {
     const [openModal, setOpenModal] = useState(false)
     const [data, setData] = useState([''])
     const [dataForm, setDataForm] = useState([''])
+    const [sell, setSell] = useState(false)
     const [loading, setLoading] = useState(true)
     const name = JSON.parse(sessionStorage.getItem('auth')).user_name
 
@@ -20,6 +22,7 @@ function ProductRegister () {
         if(openModal == false) {
             setDataForm('')
             setLoading(true)
+            setSell(false)
         }
     }, [openModal])
 
@@ -42,7 +45,6 @@ function ProductRegister () {
         })
         .then(() => {setLoading(true)})
         .catch((err) => {console.error("Ocorreu um erro na API " + err)})
-
     }
     
 
@@ -55,7 +57,7 @@ function ProductRegister () {
                     <button className='button-new' onClick={() => setOpenModal(true)}>
                         ADICIONAR
                     </button>
-                    <Modal isOpen={openModal}  children={<FormProducts setOpenModal={setOpenModal} dataForm={dataForm}/>}/>
+                    <Modal isOpen={openModal}  children={<FormProducts setOpenModal={setOpenModal} dataForm={dataForm} sell={sell}/>}/>
                 </div>
                 <div>
                     <button className='button-report' onClick={() => {}}>
@@ -64,7 +66,7 @@ function ProductRegister () {
                     </button>
                 </div>
             </div>
-            <h1 className='text-realeases'>Cadastro de Produtos</h1>
+            <h1 className='text-realeases'>Produtos</h1>
 
             {loading ? (
                 <div className="typing-indicator">
@@ -79,6 +81,7 @@ function ProductRegister () {
                 <table className='table-products'>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>CÓDIGO</th>
                             <th>PRODUTO</th>
                             <th>QUANTIDADE</th>
@@ -88,11 +91,18 @@ function ProductRegister () {
                     <tbody>
                         {data.map((item, index) => (
                             <tr key={index}>
+                                <td className='column-id'>{item.id}</td>
                                 <td className='column-code'>{item.product_code}</td>
                                 <td className='column-product'>{item.product_name}</td>
                                 <td className='column-quantity'>{item.quantity}</td>
                                 <td className='column-price'>R${item.price}</td>
                                 <td className='column-trash'>
+                                    <img 
+                                    className='img-sell' 
+                                    src={sellIcon} 
+                                    alt="" 
+                                    onClick={() => {setOpenModal(true), setDataForm(item), setSell(true)}} 
+                                    />
                                     <img 
                                     className='img-pencil' 
                                     src={pencilIcon} 

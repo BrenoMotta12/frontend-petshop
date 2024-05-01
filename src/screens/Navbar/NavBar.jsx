@@ -20,11 +20,6 @@ import imgLogout from '../../img/sign-out.svg';
             icon: bookIcon
         },
         {
-            path:"/realeases",
-            name:"Realeases",
-            icon: realeasesIcon
-        },
-        {
             path:"/pets",
             name:"Pets",
             icon: petsIcon

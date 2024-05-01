@@ -12,7 +12,6 @@ export function Home() {
             <NavBar/>
             <Routes>
                 <Route path="/productregister" element={<ProductRegister />} />
-                <Route path="/realeases" element={<Realeases />} />
                 <Route path="/pets" element={<Pets />} />
             </Routes>
             

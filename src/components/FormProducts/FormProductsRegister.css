@@ -1,12 +1,20 @@
-.form-pets div {
+.form-products div {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.form-pets input {
+.form-products input {
     height: 5vh;
     width: 70vh;
     padding-left: 1%;
+    margin-bottom: 10px;
+}
+.label-new-sell {
+    align-items: center;
+    align-self: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
