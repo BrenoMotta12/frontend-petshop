@@ -7,7 +7,7 @@ export default function Modal({isOpen, children}) {
   if (isOpen) {
     return (
       <div className='background'>
-        <div className='modal'>
+        <div className='modal shadow'>
           <div className='content-container'>
             {children}
           </div>

@@ -55,12 +55,6 @@ function Pets () {
                     </button>
                     <Modal isOpen={openModal} children={<FormPets setOpenModal={setOpenModal} dataForm={dataForm}/>}/>
                 </div>
-                <div>
-                    <button className='button-report' onClick={() => {}}>
-                        <p>GERAR</p>
-                        <p>RELATÓRIO</p>
-                    </button>
-                </div>
             </div>
             <h1 className='text-realeases'>Animais</h1>
             {loading ? (

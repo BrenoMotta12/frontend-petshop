@@ -1,6 +1,7 @@
 import { Children, useEffect, useState } from 'react'
 import './ProductRegister.css'
 import Modal from '../../components/Modal/Modal'
+import ReportModal from '../../components/Modal/ReportModal'
 import FormProducts from '../../components/FormProducts/FormProductsRegister'
 import { useSelector } from 'react-redux'
 import Api from '../../services/Api'
@@ -12,6 +13,7 @@ function ProductRegister () {
 
     const auth = useSelector(state => state.auth)
     const [openModal, setOpenModal] = useState(false)
+    const [openReportModal, setOpenReportModal] = useState(false)
     const [data, setData] = useState([''])
     const [dataForm, setDataForm] = useState([''])
     const [sell, setSell] = useState(false)
@@ -60,10 +62,11 @@ function ProductRegister () {
                     <Modal isOpen={openModal}  children={<FormProducts setOpenModal={setOpenModal} dataForm={dataForm} sell={sell}/>}/>
                 </div>
                 <div>
-                    <button className='button-report' onClick={() => {}}>
+                    <button className='button-report' onClick={() => setOpenReportModal(true)}>
                         <p>GERAR</p>
                         <p>RELATÓRIO</p>
                     </button>
+                    <ReportModal isOpen={openReportModal} setOpenReportModal={setOpenReportModal}/>
                 </div>
             </div>
             <h1 className='text-realeases'>Produtos</h1>
