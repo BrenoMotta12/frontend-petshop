@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import Api from '../../services/Api';
 import { json } from 'react-router-dom';
@@ -6,13 +6,20 @@ import './FormProductsRegister.css';
 
 export default function FormProducts({ setOpenModal, dataForm, sell }) {
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, watch, formState: { errors }, reset } = useForm({
     defaultValues: dataForm // Defina os valores padrão com base nos dados fornecidos
   });
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const quantitySold = watch('quantity_sold', 0);
+
+  useEffect(() => {
+    setTotalPrice((dataForm.price * quantitySold).toFixed(2));
+  }, [dataForm.price, quantitySold]);
 
   const onSubmit = (data) => {
+    console.log(dataForm)
     
-    console.log(data)
     if (sell) {
       let jsonData = {}
       jsonData.product_id = dataForm["id"]
@@ -50,12 +57,21 @@ export default function FormProducts({ setOpenModal, dataForm, sell }) {
           <form className='form-products' onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label className='label-new-sell'>NOVA VENDA</label>
-                <label htmlFor='id'>ID</label>
+                <label htmlFor='id'>ID DO PRODUTO</label>
                 <input
                 name='id'
                   className={errors?.id && "input-error"}
                   type="number"
                   {...register('id', { required: true, pattern: /^[0-9]+$/, disabled: true })}
+                />
+            </div>
+            <div>
+                <label htmlFor='product_name'>NOME DO PRODUTO</label>
+                <input
+                name='product_name'
+                  className={errors?.name && "input-error"}
+                  type="text"
+                  {...register('product_name', { required: true, pattern: /^[0-9]+$/, disabled: true })}
                 />
             </div>
 
@@ -68,6 +84,17 @@ export default function FormProducts({ setOpenModal, dataForm, sell }) {
               />
               {errors?.quantity_sold && <p className="error-message">Quantidade insuficiente disponível para venda! Quantidade em estoque: {dataForm.quantity}</p>}
             </div>
+
+            <div>
+              <label htmlFor='total_price'>TOTAL DA VENDA</label>
+              <input
+                value={totalPrice}
+                type="number"
+                readOnly
+            />
+              
+            </div>
+            
           </form>
         </>
       ) : (
